@@ -70,7 +70,8 @@ class FacilityResource extends Resource
                     ->disabled(fn(Forms\Get $get): bool => $get('is_free'))
                     ->dehydrated()
                     ->required(fn(Forms\Get $get): bool => !$get('is_free')),
-            ]);
+            ])
+            ->columns(1);
     }
 
     public static function table(Table $table): Table
@@ -112,6 +113,8 @@ class FacilityResource extends Resource
                 Tables\Actions\ActionGroup::make([
                     Tables\Actions\EditAction::make()
                         ->icon('')
+                        ->modalWidth(Support\Enums\MaxWidth::TwoExtraLarge)
+                        ->modalHeading(fn(Facility $record): string => 'Ubah Fasilitas - ' . $record->name)
                         ->successNotification(
                             Notification::make()
                                 ->success()
@@ -120,6 +123,7 @@ class FacilityResource extends Resource
                         ),
                     Tables\Actions\DeleteAction::make()
                         ->icon('')
+                        ->modalHeading(fn(Facility $record): string => 'Hapus ' . $record->name)
                         ->successNotification(
                             Notification::make()
                                 ->success()

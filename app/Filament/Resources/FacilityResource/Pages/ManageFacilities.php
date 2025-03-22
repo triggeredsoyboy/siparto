@@ -6,6 +6,7 @@ use App\Filament\Resources\FacilityResource;
 use Filament\Actions;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ManageRecords;
+use Filament\Support;
 
 class ManageFacilities extends ManageRecords
 {
@@ -15,6 +16,8 @@ class ManageFacilities extends ManageRecords
     {
         return [
             Actions\CreateAction::make()
+                ->modalWidth(Support\Enums\MaxWidth::TwoExtraLarge)
+                ->modalHeading('Buat Fasilitas Baru')
                 ->successNotification(
                     Notification::make()
                         ->success()
