@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Facility extends Model
 {
@@ -18,6 +19,14 @@ class Facility extends Model
     protected $guarded = [];
 
     /**
+     * Get the route key for the model.
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
+    /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
@@ -27,5 +36,13 @@ class Facility extends Model
         return [
             'is_free' => 'boolean',
         ];
+    }
+
+    /**
+     * The destinations that belong to facility.
+     */
+    public function destinations(): BelongsToMany
+    {
+        return $this->belongsToMany(Destination::class)->withTimestamps();
     }
 }
