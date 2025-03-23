@@ -67,6 +67,7 @@ class FacilityResource extends Resource
                     ->numeric()
                     ->mask(Support\RawJs::make('$money($input, \',\')'))
                     ->stripCharacters('.')
+                    ->autocomplete(false)
                     ->disabled(fn(Forms\Get $get): bool => $get('is_free'))
                     ->dehydrated()
                     ->required(fn(Forms\Get $get): bool => !$get('is_free')),

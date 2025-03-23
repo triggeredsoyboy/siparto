@@ -69,7 +69,8 @@ class DestinationResource extends Resource
                                     ->disableToolbarButtons([
                                         'attachFiles',
                                     ])
-                                    ->columnSpanFull(),
+                                    ->columnSpanFull()
+                                    ->required(),
                             ])
                             ->compact()
                             ->columns(['sm' => 2]),
@@ -101,6 +102,7 @@ class DestinationResource extends Resource
                                     ->prefix('Rp')
                                     ->mask(Support\RawJs::make('$money($input, \',\')'))
                                     ->stripCharacters('.')
+                                    ->autocomplete(false)
                                     ->required(),
                                 Forms\Components\Select::make('destination_type_id')
                                     ->label('Tipe Destinasi')
