@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             FacilitySeeder::class,
             DestinationTypeSeeder::class,
             DestinationSeeder::class,
+            PackageSeeder::class,
         ]);
     }
 }

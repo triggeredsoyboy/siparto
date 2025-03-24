@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Destination extends Model implements HasMedia
 {
@@ -52,5 +53,13 @@ class Destination extends Model implements HasMedia
     public function facilities(): BelongsToMany
     {
         return $this->belongsToMany(Facility::class)->withTimestamps();
+    }
+
+    /**
+     * Get all of the packages for the itinerary.
+     */
+    public function packages(): MorphToMany
+    {
+        return $this->morphToMany(Package::class, 'packable')->withPivot('id')->withTimestamps();
     }
 }
